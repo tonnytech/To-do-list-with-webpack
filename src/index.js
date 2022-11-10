@@ -33,7 +33,7 @@ const appedTask =(array) => {
     array.forEach(item => {
         appended += `
         <div class="to-do-pop">
-            <div class="checkbox">
+            <li class="checkbox">
                 <input
                     type="checkbox"
                     id="to-do-check"
@@ -45,7 +45,7 @@ const appedTask =(array) => {
                 <label for="todo" class="my-label">${item.description}</label><br />
             </div>
             <i class="fa-solid fa-ellipsis-vertical"></i>
-        </div>
+        </li>
       <hr />
         
         `

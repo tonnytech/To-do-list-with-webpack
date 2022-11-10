@@ -36,7 +36,7 @@ export const deleteListItem = (index) => {
 };
 
 export const updateListItems = ( index, information, TrueFalse = false ) => {
-    const updateListItem = myList.findIndex( (listItem) => listItem.index === index);
+    const updateListItem = myList.find( (listItem) => listItem.index === index);
     const myListArrayIndex = updateListItem.index - 1;
 
     const currentDescription = updateListItem.description;
