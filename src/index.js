@@ -39,6 +39,7 @@ const appedTask =(array) => {
                     id="to-do-check"
                     name="To-Do"
                     value="Add"
+                    class="my-checkbox"
                 />
                 
                 <label for="todo" class="my-label">${item.description}</label><br />
