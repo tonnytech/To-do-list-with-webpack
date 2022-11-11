@@ -1,5 +1,3 @@
-import UpdateNotifier from "update-notifier/update-notifier";
-
 const getMyList = () => {
     if (localStorage.getItem("todolist")) {
       return JSON.parse(localStorage.getItem("todolist"));
@@ -23,7 +21,7 @@ export const addList = ( description, listArray = myList) => {
     localStorage.setItem("todolist", JSON.stringify(myList));
 };
 
-export const deleteListItem = (index) => {
+export const deleteListItems = (index) => {
     myList = myList.filter( (list) => list.index !== index);
 
     const newList = myList.sort( (a,b) => a.index - b.index);
@@ -49,7 +47,6 @@ export const updateListItems = ( index, information, TrueFalse = false ) => {
     mylist[myListArrayIndex] = itemToUpdate;
 
     localStorage.setItem("todolist", JSON.stringify(myList));
-
 };
 
 export default getMyList;

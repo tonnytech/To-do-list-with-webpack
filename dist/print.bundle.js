@@ -1,1 +1,1 @@
-(()=>{"use strict"})();
+(()=>{"use strict";localStorage.getItem("todolist")&&JSON.parse(localStorage.getItem("todolist"))})();

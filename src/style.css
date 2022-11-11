@@ -62,10 +62,10 @@ i {
 .checkbox {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 .to-do-pop {
   display: flex;
   justify-content: space-between;
-  padding-right: 5%;
 }

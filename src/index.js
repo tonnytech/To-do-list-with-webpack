@@ -1,56 +1,66 @@
 import _ from 'lodash';
-// import printMe from './print.js';
+import getMyList, { addList,deleteListItems,updateListItem} from "./print.js";
 import './style.css';
 
 const myList = document.querySelector('.to-do-list')
 
-const ToDoArray = [
-    {
-      description: "write code",
-      completed: true,
-      i: 0,
-    },
-    {
-      description: "read a novel",
-      completed: true,
-      i: 1,
-    },
-    {
-      description: "watch a movie",
-      completed: true,
-      i: 2,
-    },
-    {
-      description: "play with kids",
-      completed: true,
-      i: 3,
-    },
-];
+const getCreatedList = (item)=> {
+  return `
+  <div class="to-do-pop">
+      <li class="checkbox" data-index="${item.index}"
+       data-complete="${item.complete}">
+          <label for="${item.index}">
+          <input type="checkbox" id="to-do-check" 
+          name="To-Do" value="Add" class="my-checkbox" /></label>
+          <input type="text" id="${item.index}"
+          class ="output-description" name ="${item.index}"
+          value="${item.description}">
+      </li>
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+  </div>
+<hr />
+  
+  `;
+  };
 
-let appended = ' ';
+const appendTask =(array) => {
+  let appended = ' ';
 
-const appedTask =(array) => {
-    array.forEach(item => {
-        appended += `
-        <div class="to-do-pop">
-            <li class="checkbox">
-                <input
-                    type="checkbox"
-                    id="to-do-check"
-                    name="To-Do"
-                    value="Add"
-                    class="my-checkbox"
-                />
-                
-                <label for="todo" class="my-label">${item.description}</label><br />
-            </div>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-        </li>
-      <hr />
-        
-        `
+  const sortedArray = array.sort((a, b) => a.index - b.index);
+    sortedArray.forEach(item => {
+        appended += getCreatedList(item);
     });
     myList.innerHTML= appended;
 }
 
-appedTask(ToDoArray);
+appendTask(getMyList());
+
+//adding to the list
+// const addToDo = document.querySelector('#add-todo')
+window.addEventListener("keydown", (e) => {
+  if(e.key === "Enter") {
+    const { value } = e.target;
+    console.log( "here");
+    if(!value?.trim()) return;
+
+    if (e.target.classList.contains("add-todo-input")) {
+
+      addList(value);
+      //when the list is empty
+      e.target.value = ""
+      appendTask(getMyList());
+      return;
+    }
+
+    if (e.target.classList.contains("output-description")) {
+      const mainElement = e.target.closest(".checkbox");
+    
+      const { index } = mainElement.dataset;
+
+      updateListItem(+index, value);
+      appendTask(getMyList());
+    }
+  }
+
+});
+
