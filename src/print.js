@@ -44,7 +44,7 @@ export const updateListItems = (index, information, TrueFalse = false) => {
   updateListItem.description = information;
   updateListItem.completed = TrueFalse;
 
-  mylist[myListArrayIndex] = itemToUpdate;
+myList[myListArrayIndex] = itemToUpdate;
 
   localStorage.setItem('todolist', JSON.stringify(myList));
 };

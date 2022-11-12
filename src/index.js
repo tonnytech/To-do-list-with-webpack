@@ -1,9 +1,8 @@
-import _ from 'lodash';
 import getMyList, { addList, deleteListItems, updateListItems } from './print.js';
 import './style.css';
 
 const myList = document.querySelector('.to-do-list');
-const clearButton = document.querySelector("my-button");
+const clearButton = document.querySelector('.my-button');
 
 const getCreatedList = (item) => `
   <div class="to-do-pop">
