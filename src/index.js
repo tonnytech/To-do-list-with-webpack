@@ -1,7 +1,10 @@
 import getMyList, { addList, deleteListItems, updateListItems } from './print.js';
+import checkedItems from './iteractive.js';
 import './style.css';
+import { list } from 'tar';
 
 const myList = document.querySelector('.to-do-list');
+const deleteButton = document.querySelector('.my-button');
 
 const getCreatedList = (item) => `
   <div class="to-do-pop">
@@ -84,11 +87,34 @@ myList.addEventListener('click', (e) => {
   });
 });
 
-// let RemoveIndex = [];
 
-// myList.addEventListener('click', (e) => {
-//   const activeElement = e.target.closest('#to-do-check');
-//   if (!activeElement) return;
-//   const majorElement = activeElement.closest('checkbox');
-//   RemoveIndex = checkoffItem(majorElement);
-// });
+
+myList.addEventListener('click', (e) => {
+  const activeElement = e.target.closest('#to-do-check');
+  if (!activeElement) return;
+  // console.log(activeElement);
+  
+  const majorElement = activeElement.parentNode.parentNode;
+  // const majorElement = activeElement.closest('.checkbox');
+  checkedItems(majorElement, activeElement.checked);
+});
+
+deleteButton.addEventListener('click', () => {
+  let listItems = getMyList();
+  console.log(listItems);
+  // let newArray = listItems.filter((element) => {
+  //   return element.completed === false;
+  // })
+
+  listItems = newArray;
+  localStorage.setItem('todolist', JSON.stringify(newArray));
+
+  appendTask(listItems);
+
+  // if (RemoveIndex.length > 0) {
+  //   RemoveIndex.forEach((i) => {
+  //     deleteListItems(i);
+  //   });
+  //   appendTask(getMyList());
+  // }
+});
