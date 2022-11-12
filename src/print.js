@@ -30,7 +30,7 @@ export const deleteListItems = (index) => {
   const newList = myList.sort((a, b) => a.index - b.index);
 
   newList.forEach((obj, i) => {
-    obj.index = i + 1;
+    obj.index = i;
   });
 
   localStorage.setItem('todolist', JSON.stringify(newList));

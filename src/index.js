@@ -42,7 +42,7 @@ const appendTask = (array) => {
   myList.innerHTML = appended;
 };
 
-appendTask(getMyList());
+appendTask(recalculateIndex(getMyList()));
 
 // adding to list
 
@@ -100,10 +100,10 @@ myList.addEventListener('click', (e) => {
 myList.addEventListener('click', (e) => {
   const activeElement = e.target.closest('#to-do-check');
   if (!activeElement) return;
-  // console.log(activeElement);
+
   
   const majorElement = activeElement.parentNode.parentNode;
-  // const majorElement = activeElement.closest('.checkbox');
+  
   checkedItems(majorElement, activeElement.checked);
 });
 
@@ -116,15 +116,7 @@ deleteButton.addEventListener('click', () => {
 
   listItems = recalculateIndex(newArray);
   localStorage.setItem('todolist', JSON.stringify(newArray));
-  
-  console.log(listItems)
 
   appendTask(listItems);
 
-  // if (RemoveIndex.length > 0) {
-  //   RemoveIndex.forEach((i) => {
-  //     deleteListItems(i);
-  //   });
-  //   appendTask(getMyList());
-  // }
 });
