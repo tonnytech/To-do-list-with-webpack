@@ -1,4 +1,3 @@
-// import printMe from './print.js';
 import './style.css';
 
 const myList = document.querySelector('.to-do-list');
