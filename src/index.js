@@ -2,7 +2,6 @@ import getMyList, { addList, deleteListItems, updateListItems } from './print.js
 import './style.css';
 
 const myList = document.querySelector('.to-do-list');
-const clearButton = document.querySelector('.my-button');
 
 const getCreatedList = (item) => `
   <div class="to-do-pop">
@@ -15,7 +14,9 @@ const getCreatedList = (item) => `
           class ="output-description" name ="${item.index}"
           value="${item.description}">
       </li>
-      <i class="icon-fa fa-solid fa-ellipsis-vertical"></i>
+      <div class="icon-fa">
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+      </div>
   </div>
 <hr />
   
@@ -33,8 +34,8 @@ const appendTask = (array) => {
 
 appendTask(getMyList());
 
-// adding to the list
-// const addToDo = document.querySelector('#add-todo')
+// adding to list
+
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     const { value } = e.target;
@@ -62,19 +63,20 @@ window.addEventListener('keydown', (e) => {
 
 // Deleting list items
 
-myList.addEventListener("click", (e) => {
-  const itemClicked = e.target.closest(".icon-fa");
+myList.addEventListener('click', (e) => {
+  const itemClicked = e.target.closest('.icon-fa');
 
   if (!itemClicked) return;
 
-  itemClicked.querySelector(".icon-fa").classList.add("fa-trash-can");
+  itemClicked.querySelector('.fa-solid').classList.remove('fa-ellipsis-vertical');
 
-  const trashIcon = itemClicked.querySelector(".fa-trash-can");
+  itemClicked.querySelector('.fa-solid').classList.add('fa-trash-can');
 
-  trashIcon?.addEventListener("click", () => {
-    
-    const majorElement = trashIcon.closest(".checkbox");
-    
+  const trashIcon = itemClicked.querySelector('.fa-trash-can');
+
+  trashIcon.addEventListener('click', () => {
+    const majorElement = trashIcon.parentNode.parentNode.querySelector('.checkbox');
+
     const { index } = majorElement.dataset;
 
     deleteListItems(+index);
@@ -82,22 +84,11 @@ myList.addEventListener("click", (e) => {
   });
 });
 
-let RemoveIndex = [];
+// let RemoveIndex = [];
 
-myList.addEventListener("click", (e) => {
-  const activeElement = e.target.closest(".to-do-check");
-  if(!activeElement) return;
-  const majorElement = activeElement.closest("checkbox");
-  RemoveIndex = checkoffItem(majorElement);
-});
-
-clearButton.addEventListener("clicked", (e) => {
-  if(RemoveIndex.length > 0) {
-    RemoveIndex.forEach( (d) => {
-      deleteListItems(d);
-    });
-    appendTask(getMyList());
-  }
-
-  RemoveIndex = [];
-});
+// myList.addEventListener('click', (e) => {
+//   const activeElement = e.target.closest('#to-do-check');
+//   if (!activeElement) return;
+//   const majorElement = activeElement.closest('checkbox');
+//   RemoveIndex = checkoffItem(majorElement);
+// });
