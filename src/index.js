@@ -95,6 +95,8 @@ myList.addEventListener('click', (e) => {
   });
 });
 
+// adding onclick events
+
 myList.addEventListener('click', (e) => {
   const activeElement = e.target.closest('#to-do-check');
   if (!activeElement) return;
