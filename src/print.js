@@ -5,23 +5,26 @@ const getMyList = () => {
   return [];
 };
 
-let myList = getMyList();
-
-export const addList = (description, listArray = myList) => {
+export const addList = (description, listArray = getMyList()) => {
   const list = {
     description,
     completed: false,
-    index: listArray.length + 1,
+    index: listArray.length,
   };
-
-  myList.push(list);
+  
+  listArray.push(list);
 
   // Adding to local storage
 
-  localStorage.setItem('todolist', JSON.stringify(myList));
+
+
+  localStorage.setItem('todolist', JSON.stringify(listArray));
 };
 
 export const deleteListItems = (index) => {
+
+  let myList = getMyList();
+
   myList = myList.filter((list) => list.index !== index);
 
   const newList = myList.sort((a, b) => a.index - b.index);
@@ -34,6 +37,9 @@ export const deleteListItems = (index) => {
 };
 
 export const updateListItems = (index, information, TrueFalse = false) => {
+
+  let myList = getMyList();
+
   const updateListItem = myList.find((listItem) => listItem.index === index);
   const myListArrayIndex = updateListItem.index - 1;
 

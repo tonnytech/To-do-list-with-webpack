@@ -1,7 +1,14 @@
 import getMyList, { addList, deleteListItems, updateListItems } from './print.js';
 import checkedItems from './iteractive.js';
 import './style.css';
-import { list } from 'tar';
+
+const recalculateIndex = (myArray) => {
+myArray.forEach((obj, i) => {
+  obj.index = i;
+});
+
+return myArray;
+};
 
 const myList = document.querySelector('.to-do-list');
 const deleteButton = document.querySelector('.my-button');
@@ -50,6 +57,7 @@ window.addEventListener('keydown', (e) => {
       // when the list is empty
       e.target.value = '';
       appendTask(getMyList());
+
       return;
     }
 
@@ -101,13 +109,15 @@ myList.addEventListener('click', (e) => {
 
 deleteButton.addEventListener('click', () => {
   let listItems = getMyList();
-  console.log(listItems);
-  // let newArray = listItems.filter((element) => {
-  //   return element.completed === false;
-  // })
+  
+  let newArray = listItems.filter((element) => {
+    return element.completed === false;
+  });
 
-  listItems = newArray;
+  listItems = recalculateIndex(newArray);
   localStorage.setItem('todolist', JSON.stringify(newArray));
+  
+  console.log(listItems)
 
   appendTask(listItems);
 

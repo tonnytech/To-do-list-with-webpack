@@ -1,5 +1,6 @@
 import getMyList from "./print";
 
+
 const checkedItems = (checkedListItems, value) => {
   const listItemsList = checkedListItems;
   const checkbox = checkedListItems.querySelector('#to-do-check');
@@ -8,7 +9,7 @@ const checkedItems = (checkedListItems, value) => {
   const myList = checkedListItems.closest('.to-do-list');
 
   let todoList = getMyList();
-  let id = parseInt(listItemsList.dataset.index)-1;
+  let id = parseInt(listItemsList.dataset.index);
 
 
   if (value) {
