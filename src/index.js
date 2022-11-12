@@ -3,11 +3,11 @@ import checkedItems from './iteractive.js';
 import './style.css';
 
 const recalculateIndex = (myArray) => {
-myArray.forEach((obj, i) => {
-  obj.index = i;
-});
+  myArray.forEach((obj, i) => {
+    obj.index = i;
+  });
 
-return myArray;
+  return myArray;
 };
 
 const myList = document.querySelector('.to-do-list');
@@ -95,28 +95,22 @@ myList.addEventListener('click', (e) => {
   });
 });
 
-
-
 myList.addEventListener('click', (e) => {
   const activeElement = e.target.closest('#to-do-check');
   if (!activeElement) return;
 
-  
   const majorElement = activeElement.parentNode.parentNode;
-  
+
   checkedItems(majorElement, activeElement.checked);
 });
 
 deleteButton.addEventListener('click', () => {
   let listItems = getMyList();
-  
-  let newArray = listItems.filter((element) => {
-    return element.completed === false;
-  });
+
+  const newArray = listItems.filter((element) => element.completed === false);
 
   listItems = recalculateIndex(newArray);
   localStorage.setItem('todolist', JSON.stringify(newArray));
 
   appendTask(listItems);
-
 });

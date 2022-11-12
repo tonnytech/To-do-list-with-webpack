@@ -11,18 +11,15 @@ export const addList = (description, listArray = getMyList()) => {
     completed: false,
     index: listArray.length,
   };
-  
+
   listArray.push(list);
 
   // Adding to local storage
-
-
 
   localStorage.setItem('todolist', JSON.stringify(listArray));
 };
 
 export const deleteListItems = (index) => {
-
   let myList = getMyList();
 
   myList = myList.filter((list) => list.index !== index);
@@ -37,8 +34,7 @@ export const deleteListItems = (index) => {
 };
 
 export const updateListItems = (index, information, TrueFalse = false) => {
-
-  let myList = getMyList();
+  const myList = getMyList();
 
   const updateListItem = myList.find((listItem) => listItem.index === index);
   const myListArrayIndex = updateListItem.index - 1;

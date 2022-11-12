@@ -1,27 +1,17 @@
-import getMyList from "./print";
-
+import getMyList from './print.js';
 
 const checkedItems = (checkedListItems, value) => {
   const listItemsList = checkedListItems;
-  const checkbox = checkedListItems.querySelector('#to-do-check');
-  const myInput = checkedListItems.querySelector('.output-description');
 
-  const myList = checkedListItems.closest('.to-do-list');
-
-  let todoList = getMyList();
-  let id = parseInt(listItemsList.dataset.index);
-
+  const todoList = getMyList();
+  const id = parseInt(listItemsList.dataset.index, 10);
 
   if (value) {
     todoList[id].completed = true;
-  
   } else {
     todoList[id].completed = false;
-  
   }
   localStorage.setItem('todolist', JSON.stringify(todoList));
-
-
 };
 
 export default checkedItems;
