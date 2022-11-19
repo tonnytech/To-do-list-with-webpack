@@ -10,6 +10,10 @@
 - Webpack
 - NPM
 
+## Live preview
+
+https://teitonny.github.io/To-do-list-with-webpack/
+
 ## Getting Started
 
 Get a local copy up and running follow these simple example steps.
