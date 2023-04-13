@@ -12,7 +12,7 @@
 
 ## Live preview
 
-https://teitonny.github.io/To-do-list-with-webpack/
+[Click here to see live preview](https://tonnytech.github.io/To-do-list-code-review/dist/index.html)
 
 ## Getting Started
 
